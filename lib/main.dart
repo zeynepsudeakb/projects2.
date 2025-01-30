@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:projects/welcome.dart';
 import 'package:table_calendar/table_calendar.dart';
+import 'package:projects/hıstory.dart';  // HistoryPage'i import ettik
 
 void main() {
   runApp(const MyPlannerApp());
@@ -22,32 +23,6 @@ class MyPlannerApp extends StatelessWidget {
   }
 }
 
-/*class WelcomePage extends StatelessWidget {
-  const WelcomePage({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: ElevatedButton(
-          onPressed: () {
-            Navigator.pushReplacement(
-              context,
-              MaterialPageRoute(builder: (context) => const PlannerScreen()), // PlannerScreen'e geçiş
-            );
-          },
-          child: const Text('Başla'),
-          style: ElevatedButton.styleFrom(
-            backgroundColor: Colors.orange[700],
-            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-            textStyle: const TextStyle(fontSize: 18),
-          ),
-        ),
-      ),
-    );
-  }
-}*/
-
 class PlannerScreen extends StatefulWidget {
   const PlannerScreen({Key? key}) : super(key: key);
 
@@ -62,9 +37,17 @@ class _PlannerScreenState extends State<PlannerScreen> {
     setState(() {
       _selectedIndex = index;
     });
+
+    // Geçmiş butonuna tıklandığında HistoryPage'e geçiş
+    if (index == 1) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => const HistoryPage()), // HistoryPage'e yönlendir
+      );
+    }
   }
 
-  bool isDarkMode = false; // Gece modu durumu
+  bool isDarkMode = false;
 
   // Gece ve gündüz modlarını değiştiren fonksiyon
   void toggleTheme() {
