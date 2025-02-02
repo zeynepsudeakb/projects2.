@@ -3,7 +3,7 @@ import 'package:projects/h%C4%B1story.dart';
 import 'package:projects/profil.dart';
 import 'package:projects/welcome.dart';
 import 'package:table_calendar/table_calendar.dart';
-import 'package:projects/ayarlar.dart'; // Ayarlar sayfasını import et
+import 'package:projects/ayarlar.dart'; 
 
 void main() {
   runApp(const MyPlannerApp());
@@ -17,12 +17,12 @@ class MyPlannerApp extends StatefulWidget {
 }
 
 class _MyPlannerAppState extends State<MyPlannerApp> {
-  bool isDarkMode = false; // Başlangıçta gündüz modu
+  bool isDarkMode = false; 
 
-  // Temayı değiştiren fonksiyon
+  
   void toggleTheme() {
     setState(() {
-      isDarkMode = !isDarkMode; // Tema değiştirme
+      isDarkMode = !isDarkMode; 
     });
   }
 
@@ -32,7 +32,7 @@ class _MyPlannerAppState extends State<MyPlannerApp> {
       debugShowCheckedModeBanner: false,
       title: 'MyPlanner',
       theme: ThemeData(
-        brightness: isDarkMode ? Brightness.dark : Brightness.light, // Tema ışık veya karanlık
+        brightness: isDarkMode ? Brightness.dark : Brightness.light,
         primarySwatch: Colors.orange,
       ),
       home: const WelcomePage(),
@@ -49,43 +49,43 @@ class PlannerScreen extends StatefulWidget {
 
 class _PlannerScreenState extends State<PlannerScreen> {
   int _selectedIndex = 0;
-  List<String> tasks = []; // Görevleri tutmak için liste
+  List<String> tasks = []; 
 
   void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
     });
 
-    // Geçmiş butonuna tıklanırsa HistoryPage'e geçiş
+    
     if (index == 1) {
       Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => const HistoryPage()), // HistoryPage'e yönlendir
+        MaterialPageRoute(builder: (context) => const HistoryPage()), 
       );
     }
 
-    // Profil butonuna tıklanırsa ProfilePage'e geçiş
+   
     if (index == 2) {
       Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => const ProfilePage()), // ProfilePage'e yönlendir
+        MaterialPageRoute(builder: (context) => const ProfilePage()), 
       );
     }
 
-    // Ayarlar butonuna tıklanırsa SettingsPage'e geçiş
+  
     if (index == 3) {
       Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => const SettingsPage()), // SettingsPage'e yönlendir
+        MaterialPageRoute(builder: (context) => const SettingsPage()),
       );
     }
   }
 
   void _addTask(String task) {
     setState(() {
-      tasks.add(task); // Yeni görev ekle
+      tasks.add(task); 
     });
-    Navigator.of(context).pop(); // Modalı kapat
+    Navigator.of(context).pop();
   }
 
   void _showAddTaskDialog() {
@@ -104,14 +104,14 @@ class _PlannerScreenState extends State<PlannerScreen> {
           actions: [
             TextButton(
               onPressed: () {
-                Navigator.of(context).pop(); // Dialogu kapat
+                Navigator.of(context).pop(); 
               },
               child: const Text('Vazgeç'),
             ),
             TextButton(
               onPressed: () {
                 if (_taskController.text.isNotEmpty) {
-                  _addTask(_taskController.text); // Görevi ekle
+                  _addTask(_taskController.text); 
                 }
               },
               child: const Text('Ekle'),
@@ -130,10 +130,10 @@ class _PlannerScreenState extends State<PlannerScreen> {
         backgroundColor: Colors.orange,
         actions: [
           IconButton(
-            icon: const Icon(Icons.brightness_6), // Gece/gündüz modu ikonu
+            icon: const Icon(Icons.brightness_6), 
             onPressed: () {
               final appState = context.findAncestorStateOfType<_MyPlannerAppState>();
-              appState?.toggleTheme(); // Tema değiştirme
+              appState?.toggleTheme(); 
             },
           ),
         ],
@@ -301,7 +301,7 @@ class _PlannerScreenState extends State<PlannerScreen> {
                         ),
                         ...tasks.map((task) => ListTile(
                           title: Text(task),
-                        )).toList(), // Eklenen görevleri listele
+                        )).toList(), 
                       ],
                     ),
                   ),
@@ -326,7 +326,7 @@ class _PlannerScreenState extends State<PlannerScreen> {
                       child: IconButton(
                         icon: const Icon(Icons.add),
                         color: Colors.orange[800],
-                        onPressed: _showAddTaskDialog, // Görev eklemek için
+                        onPressed: _showAddTaskDialog, 
                       ),
                     ),
                   ),
